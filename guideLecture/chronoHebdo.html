@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Chrono hebdomadaire </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/guideLecture.css">
+
+
+<style>
+
+    /* table specifique à la page ChronoMensuel.html et chronoHebdo.html */
+	
+    table{width:auto;  }
+	/* frange verticale */
+	table tr:nth-child(2n) { background-color: #dddddd; }
+    table tr:nth-child(2n+1) { background-color: #ccc ; }
+
+	
+    table tr td{padding:.5em .81em; }
+	.t1ligne1 td { text-align:center; }
+	.t1ligne1, .t2ligne1 { background-color: #333 !important; color:#c4c4c4; font-family:system ui; font-weight:bold; }
+	.t1ligne8, .t2ligne8 { background: #332 !important; color:gray; font-size:.81em; }
+    .t1ligne2, .t1ligne3, .t1ligne4, .t1ligne5, .t1ligne6, .t1ligne7 { background:#998;}		
+    .t2ligne2, .t2ligne3, .t2ligne4, .t2ligne5, .t2ligne6, .t2ligne7 { background:#998;}		
+	
+	/* Blem: en mode responsive le contenu après les tables remonte */
+	#main #tables::after {
+	   content: "";
+	   display: block;
+	   clear: both;
+	}
+	/* blem non resolu: je le met en display: none en attendant de trouver l'origine du proplème */
+	@media screen and (max-width: 680px) {
+	 #remarque{display:none; }
+	}
+	/* STYLE SPECIFIQUE A CETTE PAGE */
+	.table1  tr td { width:3.5em;}
+	.t1ligne1 td:first-child { color:#667;}
+	/* Durée sourate( à la vitesse de 40s/p ) */
+	.max { font-family:Arial Black; }
+	.red { background:#cc0000; color:#999; filter: grayscale(19%); }
+	.red_ { background:#9d3d5f; color:#889;}
+	.ok{ background:#006600; color:#bba; fon-weight:bold; filter: grayscale(50%); }
+	
+	@media screen and (max-width: 400px) {
+	    table { 
+			/* Horizontal Scrollable */
+            overflow: auto;
+            white-space: nowrap;			
+		}
+	    table tr td{ font-size:.7em;}
+        .table1  tr td { width:auto;}
+		/*
+		   .cadreArdoise  { 
+		        padding:0;
+                height:10em;				
+				width:97%; 
+				border-radius:8px;
+				overflow-y: scroll; 
+			}
+		*/
+		.paragrapheBlanc{
+		    height:10em;				
+			width:80.1%;
+            overflow-y: scroll; 
+            border-radius:6px;			
+		}
+    }
+	
+	
+</style>
+
+
+</head>
+<body onload="openNav();">
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="index.html" class="openbtn" style="text-decoration:none;"><i class="fa fa-home" style="font-size:24px;  "></i></a> 
+  
+  <a href="index.html">Matin</a>   
+  <a href="index.html#soir">Soir</a>
+  <a href="avantDodo.html#soir">Hawamim</a>
+  <a href="avantDodo.html">Nuit: Avant dodo</a>
+  <a href="priere.html">Prières</a>
+  <a href="weekend.html">week end</a>
+  <button class="dropdownBtn">Relevés Chrono  <i class="fa fa-caret-down"></i>  </button> 
+  <div class="dropdownContainer">
+    <a href="chronoHebdo.html">Hebdo</a>
+    <a href="chronoMensuel.html">Mensuels</a>
+	<div id="interfaceSaisie" >
+      <a href="saisieMensuelSamedi.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Samedi(tab mensuel)</small></a>
+      <a href="saisieMensuelDimanche.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Dimanche(tab mensuel)</small></a>
+    </div>
+	<a href="#"></a>
+  </div> 
+  
+</div>
+
+<div id="main" >
+   <button class="openbtn" id="openMenu" onclick="openNav()" style="margin-bottom:2em; width:auto; background:transparent; color:#667;" >☰</button><br><br>
+   <p class="img titre" id="titreMatin" style="background:#667; color:#ECECEA;  font-weight:bold;">Chrono hebdomadaire</p>
+   <!-- 
+    ############ TEMPLATE TABLE STATIQUE :
+   
+	<table class="table1 paragrapheTransparent" >
+	    <tr class="t1ligne1"><td>Semaine26</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+		
+		<tr class="lundi"><td class="t1ligne2">Lundi   </td> <td> .. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr>
+		<tr class="mardi"><td class="t1ligne3">Mardi   </td> <td> .. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr>
+		<tr class="mercr"><td class="t1ligne4">Mercredi</td> <td> .. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr>
+		<tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td> .. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr>
+		<tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> .. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr>
+		
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+   </table>
+   
+   
+    ############## TEMPLATE TABLE DYNAMIQUE : #################
+	
+	<table class="table1 img" style=" background-color:#bbb; width:92%;  display:block; float:left; box-shadow:none; background:transparent; "  >
+		<tr class="t1ligne1"><td>Semaine27</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+		
+		
+		
+		  ...... valeur de la variable saisie: jour.js(ligne36-ligne40) ...............
+		
+   		
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+    </table>
+	
+		
+	-->
+   
+   <h3 style=" float:left;">Post-ramadan: 1ère Partie</h3>
+
+    <div id="newTable">
+	   <!-- 1ère table -->
+	   <table class="table1 paragrapheTransparent">
+			<tr class="t1ligne1"><td>Semaine26</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+			
+			<tr class="lundi"><td class="t1ligne2">Lundi   </td> <td class="red">8mn47</td><td class="red">10 mn</td><td class="red">8 mn</td><td>6 mn</td><td>...</td><td>...</td></tr>
+			<tr class="mardi"><td class="t1ligne3">Mardi   </td> <td class="red_">8 mn</td><td class="red">9mn23</td><td>6mn27</td><td>6 mn</td><td>...</td><td>...</td></tr>
+			<tr class="mercr"><td class="t1ligne4">Mercredi</td> <td class="red">8mn13</td><td class="red">10 mn</td><td>6 mn</td><td>5mn</td><td>...</td><td>...</td></tr>
+			<tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td>6mn49</td><td class="red_">8mn35</td><td>5mn48</td><td>4mn45</td><td>...</td><td>...</td></tr>
+			<tr class="vendr"><td class="t1ligne6">Vendredi</td> <td class="red_">7mn15</td><td class="red">9mn21</td><td class="red_">7mn</td><td class="red_">5mn40</td><td>...</td><td>...</td></tr>
+			
+			<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+	   </table>
+	   <p class="paragrapheBlanc">
+			  <strong style="font-size:1.2em" >  s29( سُوۡرَةُ العَنکبوت )</strong><br><br>
+			  Quiconque la lit irait immanquablement au Paradis, car cette Sourate jouit d'une place particulière auprès d'<b style="color:#000080;">Allãh</b>.<br> 
+			  C'est pourquoi il est donc recommandé de la lire chaque jour( avec la sourate 30 )<br><br>
+			  <span><i>Selon un hadith du Prophète &#65018; </i>: «Quiconque lit cette Sourate, aura la récompense de <span style="color:green">10 bonnes actions, multipliées par le nombre de l'ensemble des croyants et des hypocrites </span>».</span><br><br>
+			  <span><i>Ses effets curatifs: </i>: Quiconque la transcrit, la trempe dans de l'eau et boit celle-ci guérira de toute maladie par le Pouvoir d'<b style="color:#000080;">Allãh</b>. </span><br>
+	   </p>
+	  
+	   
+	   
+	   
+	   <!-- TASK(retars cumulé) : utiliser le "module js' de l'atelier js(Question3_cellules). Task adapter ce module et l'integer dans cette page ( en fin de page model weekend.html ) "> -->
+	   <!-- <img src="img/retard.png" class="img" style="  display:block !important;   "> -->
+	   
+	   <!-- 2ème table -->
+	   
+	   <table class="table1 paragrapheTransparent" >
+			<tr class="t1ligne1"><td>Semaine27</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+			
+			<tr class="lundi"><td class="t1ligne2">Lundi   </td> <td class="red_">7mn23</td><td class="red">9mn59</td><td>6mn</td><td>4mn53</td><td>...</td><td>...</td></tr>
+			<tr class="mardi"><td class="t1ligne3">Mardi   </td> <td class="red_">7mn16</td><td class="red_">8mn73</td><td class="red_">6mn47</td><td>..</td><td>...</td><td>...</td></tr>
+			<tr class="mercr"><td class="t1ligne4">Mercredi</td> <td>6mn50</td><td>8mn17</td><td class="red_">7mn11</td><td>..</td><td>...</td><td>..</td></tr>
+			<tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td>6mn28</td><td class="ok">7mn33</td><td>6mn33</td><td></td><td>...</td><td>..</td></tr>
+			<tr class="vendr"><td class="t1ligne6">Vendredi</td> <td>6mn47</td><td >8mn33</td><td class="red_">7mn21</td><td>..</td><td>...</td><td>..</td></tr>
+			
+			<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+	   </table>
+	   
+	   	<table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>Semaine28</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+		
+		    <tr class="lundi"><td class="t1ligne2">Lundi   </td> <td>6mn21</td><td>8mn23</td><td>6mn</td><td>.. mn</td><td>...</td><td>...</td></tr> 
+            <tr class="mardi"><td class="t1ligne3">Mardi   </td> <td>6mn31</td><td>8mn27</td><td>5mn44</td><td>.. mn</td><td>...</td><td>...</td></tr> 
+		    <tr class="mercr"><td class="t1ligne4">Mercredi</td> <td>6mn27</td><td>7mn57</td><td class="ok">5mn19</td><td>.. mn</td><td>...</td><td>...</td></tr> 
+            <tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td class="red">9mn12</td><td>8mn33</td><td class="ok">5mn18</td><td>.. mn</td><td>...</td><td>...</td></tr> 
+			<tr class="vendr"><td class="t1ligne6">Vendredi</td> <td class="red_">7mn50</td><td>8mn33</td><td>5mn59</td><td>.. mn</td><td>...</td><td>...</td></tr> 
+   		
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+        </table>
+		
+		<!-- <table class="table1 img" style=" background-color:#bbb; width:92%;  display:block; float:left; box-shadow:none; background:transparent; "  > -->
+		<table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>Semaine29</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+		
+		    <tr class="lundi"><td class="t1ligne2">Lundi   </td> <td>6mn52</td><td>8mn23</td><td class="ok">5mn24</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="mardi"><td class="t1ligne3">Mardi   </td> <td>6mn47</td><td>8mn21</td><td class="ok">5mn14</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="mercr"><td class="t1ligne4">Mercredi</td> <td>7mn00</td><td>8mn06</td><td class="ok">5mn23</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td>6mn27</td><td>7mn57</td><td class="ok">5mn28</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> .. mn</td><td class="red">11mn35</td><td>6mn24</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+        </table>
+		<!-- <table class="table1 img" style=" background-color:#bbb; width:92%;  display:block; float:left; box-shadow:none; background:transparent; "  > -->
+		<table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>Semaine30</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+
+            <tr class="lundi"><td class="t1ligne2">Lundi   </td> <td> .. mn</td><td class="red">11mn49</td><td>5mn49</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="mardi"><td class="t1ligne3">Mardi   </td> <td> .. mn</td><td class="red">10mn07</td><td>5mn37</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="mercr"><td class="t1ligne4">Mercredi</td> <td> .. mn</td><td class="red">9mn54</td><td>5mn40</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td> .. mn</td><td class="red">10mn27</td><td class="ok">5mn33</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> .. mn</td><td class="red">10mn23</td><td class="ok">5mn05</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 		
+
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+        </table>
+		<!-- <table class="table1 img" style=" background-color:#bbb; width:92%;  display:block; float:left; box-shadow:none; background:transparent; "  > -->
+		<table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>Semaine31</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+
+            <tr class="lundi"><td class="t1ligne2">Lundi   </td> <td> .. mn</td><td class="red">9mn46</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="mardi"><td class="t1ligne3">Mardi   </td> <td> .. mn</td><td class="red">10mn12</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="mercr"><td class="t1ligne4">Mercredi</td> <td> .. mn</td><td class="red">10mn16</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td> .. mn</td><td class="red">10mn12</td><td>..mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> .. mn</td><td class="red_">9mn23</td><td>..mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 		
+
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+        </table>
+		<table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>Semaine32</td><td><a href="../../CORAN/s27.html" target="_blank" class="toTheCORAN">s27</a></td><td><a href="../../CORAN/s27juz20.html#s28page385" target="_blank" class="toTheCORAN">s28</a></td><td><a href="../../CORAN/s28.html#s29debut" target="_blank" class="toTheCORAN">s29</a></td><td><a href="../../CORAN/s29juz21.html#s30a" target="_blank" class="toTheCORAN">s30</a></td><td><a href="../../CORAN/s32.html" target="_blank" class="toTheCORAN">s32</a></td><td><a href="../../CORAN/s33.html" target="_blank" class="toTheCORAN">s33</a></td></tr>
+            
+			<tr class="lundi"><td class="t1ligne2">Lundi   </td> <td> .. mn</td><td class="red">9mn59</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="mardi"><td class="t1ligne3">Mardi   </td> <td> .. mn</td><td class="red">11mn29</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="mercr"><td class="t1ligne4">Mercredi</td> <td> .. mn</td><td class="red_">9mn03</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+            <tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td> .. mn</td><td>8mn28</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+		    <tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> .. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td><td>.. mn</td></tr> 
+
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+        </table>
+
+		<!-- 
+		
+		################   Rappel du Dimanche ######################
+        
+		<table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td colspan="7">On est Dimanche.</td></tr>
+            <tr class="lundi"><td class="t1ligne2 giro" style="color:transparent;">Dimanche .....</td> <td colspan="6" style="text-align:center; width:84%; "><div id="girofar"> <a href="https://www.gifsanimes.com/cat-gyrophares-1197.htm"><img src="https://www.gifsanimes.com/data/media/1197/gyrophare-image-animee-0011.gif" border="0" alt="gyrophare-image-animee-0011" /></a></div></td></tr> 
+		<tr class="t1ligne8"><td id="messageGirofar" colspan="7" style="padding:3.3%;  text-align:center;">T'as pas encore copié la dernière table !</td></tr>       
+        </table>
+		
+	   
+	    ################  Dernière table  ##########################
+	   
+	   
+	    Elle est ajoutée dynamiquement(jour.js): Le rappel ci-haut s'affiche le Dimanche pour pas oublier de fixer ici les données de la dernière tables( qui se trouve dans la variable saisie du fichier tableDynamique.js INCHA ALLÃH)
+         # Ouais mais puisque le script HTML n'existe pas, où je vais travailler?
+         # Où je vais noter les chrono et les code couleur ?
+         # ...
+         # Du coup un interface graphique s'impose
+         # auquel cas j'dois utiliser un sever PHP ( ce que je n'veux absolument pas !)
+         #
+         # ... ??? ...		 
+	     #
+		 # Temporairement,,
+		 # 1)le faire dans la variable +saisie+ :jour.js(ligne36-ligne40) et l'importer ici le weekend
+		 # 2)Remplacer le code exporté par la RESSOURCE(ligne110-ligne114) INCHA ALLÃH
+		 #
+		 # Pour l'interface graphique: penser à java aulieu d1 serveur PHP
+		 # Et surtout utiliser une solution qui existe aulieu de perdre du temps !
+	   
+	   
+                                           Code couleur
+		   ##############################################################################
+		   #                                                                            #
+		   #       Accusé rouge( class red): tout retard dépassant les 2mn              #
+		   #       Accusé red_             : tout retard dépassanr 1 mn                 #
+		   #                                                                            #
+		   ####### Avant de s'acharner sur une sourate; i fo reviser sa traduction ######
+		   
+		-->
+    </div>
+	<!-- Pour je ne sais quelle raison i veut pas se centrer nourmalement: j'suis obligé de forcer -->
+    <img src="img/1x10x323671.png"  style="padding:0; width:50%;   margin:0 20%;" />
+   
+   <h3 style=" float:left;">Post-ramadan: 2ème Partie<small style="color:gray; font-family:serif;">(2.1)</small> </h3><!-- float: left  pour que ça REMONTE PAS !!!!! -->
+   
+   
+   <table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>50 mn</td><td><a href="../../CORAN/s10.html" target="_blank" class="toTheCORAN">s10</a></td><td><a href="../../CORAN/s10fin.html#s11page221" target="_blank" class="toTheCORAN">s11</a></td><td ><a href="../../CORAN/s11fin.html#s12page235" target="_blank" class="toTheCORAN">s12</a></td><td style=""><a href="#" target="_blank" class="toTheCORAN"></a></td><td><a href="../../CORAN/s13.html" target="_blank" class="toTheCORAN" style="color:#4d94ff;">s13</a></td><td><a href="../../CORAN/s13.html#s14debut" target="_blank" class="toTheCORAN" style="color:#4d94ff;">s14</a></td></tr>
+	  <!--	pas de chrono pour l'instant
+		<tr class="lundi"><td class="t1ligne2">Lundi   </td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="mardi"><td class="t1ligne3">Mardi   </td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="mercr"><td class="t1ligne4">Mercredi</td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> ..</td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+      -->
+   </table>
+   <!-- Attention! sans le float, tu n'vois kedal -->
+   <h3 style=" float:left;">Post-ramadan: 2ème Partie<small style="color:gray; font-family:serif;">(2.2)</small>  </h3>
+
+   <table class="table1 paragrapheTransparent" >
+		<tr class="t1ligne1"><td>45 mn</td><td><a href="../../CORAN/s15.html" target="_blank" class="toTheCORAN" style="color:#4d94ff;">s15</a></td><td><a href="../../CORAN/s16.html#s16debut" target="_blank" class="toTheCORAN" style="color:#4d94ff;">s16</a></td><td ><a href="../../CORAN/s17.html" target="_blank" class="toTheCORAN">s17</a></td><td style="background:#4CAF50"><a href="#" target="_blank" class="toTheCORAN"></a></td><td><a href="../../CORAN/s19.html" target="_blank" class="toTheCORAN">s19</a></td><td><a href="../../CORAN/s20.html#s20a" target="_blank" class="toTheCORAN">s20</a></td></tr>
+	  <!--	pas de chrono pour l'instant
+		<tr class="lundi"><td class="t1ligne2">Lundi   </td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="mardi"><td class="t1ligne3">Mardi   </td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="mercr"><td class="t1ligne4">Mercredi</td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="jeudi"><td class="t1ligne5">Jeudi   </td> <td>.. </td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		<tr class="vendr"><td class="t1ligne6">Vendredi</td> <td> ..</td><td>..</td><td>..</td><td>..</td><td>..</td><td>..</td></tr>
+		
+		<tr class="t1ligne8"><td><small class="tempsRequis">Temps requis: <i style="color:#25fde9">27 mn</i></small></td><td><small>8p<sup>1/2</sup>(<b class="max">6mn</b>)</small></td><td><small>11p(<b class="max">7mn</b>33)</small></td><td><small>8p(<b class="max">5mn</b>33)</small></td><td><small>6p(<b class="max">4mn</b>30)</small></td><td><small>4p(<b class="max">2mn</b>40)</small></td><td><small>3p(<b class="max">2mn</b>)</small></td></tr>       
+      -->
+   </table>
+
+   
+   
+
+	
+	
+</div><!-- #main -->
+
+
+<script type="text/javascript" src="js/btn.js"></script>
+<!-- <script type="text/javascript" src="js/jour.js"></script> -->
+<script type="text/javascript" src="js/tableDynamique.js"></script>
+
+</body>
+</html> 

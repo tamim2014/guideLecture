@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Chrono mensuel </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="js/chronoMensuelSamedi.js"></script>
+<style>
+	body { font-family: "Lato", sans-serif; background:#bbb;}
+	.sidebar {
+		  position: fixed; top: 0; left: 0; left: 0; height: 100%; width: 0; z-index: 1; 
+		  padding-top: 100px; overflow-x: hidden; background-color: #111; transition: 0.5s; 
+	}
+	.sidebar a , .dropdownBtn { display: block; padding: 8px 8px 8px 32px; font-size: 25px; text-decoration: none;  color: #818181; transition: 0.3s; }
+	.sidebar a:hover, .sidebar .dropdownBtn:hover  { color: #f1f1f1; }
+	.sidebar .closebtn { position: absolute; top: 15px; right: 25px; font-size: 36px; margin-left: 50px; }
+
+	.openbtn { font-size: 20px; cursor: pointer;  background-color: #111; color: white;  padding: 10px 15px; border: none; text-align:left; margin-top:0;  width:100%;   }
+	.openbtn:hover { background-color: #444; }
+
+     /***********************  DRPDOWN   **********************************/	
+    .dropdownBtn {
+	  border: none; outline: none; background: none; text-align: left;
+	  width: 100%;  /* icon btn à droite */ 
+	}
+	/* Add an active class to the active dropdown button */
+    .active { background-color: green; color: white; }
+	/* Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+	.dropdownContainer { display: none; background-color: #262626 ; padding-left: 8px; }
+    /* Optional: Style the caret down icon */
+   .fa-caret-down { float: right; padding-right:.5em; padding-top:.19em; }
+  
+	#main { padding: 16px; transition: margin-left .5s;   }
+	
+	img , .img { 
+		  float: left;  
+		  width:87%;/* m'a emmerdé car i fallait remplir ainsi remplir l'ecran .sinon le contenu remonte en display inline: la solution ? display:table-cell; ou bien un margin-right: largeurTotal - largeurElement; */
+		  height: auto ;
+		  padding:1.2em;  
+		  margin:0 auto 2em  0; /* margin:1.5% 6.5%;  */
+		  background: #555;
+		  box-shadow:
+			0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset,
+			0px 2px 2px 0px rgba(255, 255, 255, 0.5);
+		  border:1px solid #8c8b8b;
+		  border-radius: 4px; 	  
+	}
+	ul { margin-left:1em; width:77.5%; background:#998;  }
+	ul li{ padding-left:.5em; }
+	ul li:nth-child(even) { background-color: #dddddd; }
+    ul li:nth-child(odd) { background-color: #ccc; } 
+
+    /* table specifique à la page ChronoMensuel.html */
+    table{width:auto;}
+	table tr:nth-child(2n) { background-color: #dddddd; }
+    table tr:nth-child(2n+1) { background-color: #ccc; }
+    table tr td{padding:.5em .93em;}
+	#t1ligne1, #t2ligne1 { background: #333; color:#ECECEA; }
+	#t1ligne8, #t2ligne8 { background: #332; color:gray; }
+    #t1ligne2, #t1ligne3, #t1ligne4, #t1ligne5, #t1ligne6, #t1ligne7 { background:#998;}		
+    #t2ligne2, #t2ligne3, #t2ligne4, #t2ligne5, #t2ligne6, #t2ligne7 { background:#998;}		
+	
+    
+	
+	/* Scroll To Top Button */
+	#myBtn {
+		   display: none;  position: fixed; bottom: 20px; right: 7px; font-size:.77em; padding: .7em;
+		   border: none;  outline: none; background-color: #007; color: white; cursor: pointer; border-radius: 4px; z-index: 1;
+	}
+	#myBtn:hover { background-color: #555; }
+		
+
+	/** On smaller screens, 
+	 *  where height is less than 450px, 
+	 *  change the style of the sidenav (less padding and a smaller font size)
+	 */
+	@media screen and (max-height: 450px) {
+	  .sidebar {padding-top: 15px; background:red !important; width:100%;}
+	  .sidebar a {font-size: 18px;}
+	}
+	@media screen and (max-width: 680px) {
+	  #mySidebar {  z-index:2; width:100% !important;  opacity: 0.93; }
+	  #main{ z-index:1; width:100% ; margin-left:0 !important;  }
+	  p.titre {width:87% !important; }
+    }
+	/* Blem: en mode responsive le contenu après les tables remonte */
+	#main #tables::after {
+	   content: "";
+	   display: block;
+	   clear: both;
+	}
+	/* blem non resolu: je le met en display: none en attendant de trouver l'origine du proplème */
+	@media screen and (max-width: 680px) {
+	 #remarque{display:none; }
+	}
+</style>
+</head>
+<body onload="openNav();">
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="index.html" class="openbtn" style="text-decoration:none;"><i class="fa fa-home" style="font-size:24px;  "></i></a> 
+  
+  <a href="index.html">Matin</a>   
+  <a href="index.html#soir">Soir</a>
+  <a href="avantDodo.html#soir">Hawamim</a>
+  <a href="avantDodo.html">Nuit: Avant dodo</a>
+  <a href="priere.html">Prières</a>
+  <a href="weekend.html">week end</a>
+  <button class="dropdownBtn">Relevés Chrono  <i class="fa fa-caret-down"></i>  </button> 
+  <div class="dropdownContainer">
+    <a href="chronoHebdo.html">Hebdo</a>
+    <a href="chronoMensuel.html">Mensuels</a>
+	<div id="interfaceSaisie" >
+      <a href="saisieMensuelSamedi.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Samedi(tab mensuel)</small></a>
+      <a href="saisieMensuelDimanche.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Dimanche(tab mensuel)</small></a>
+    </div>
+	<a href="#"></a>
+  </div>   
+</div>
+
+<div id="main" s>
+   <button class="openbtn" id="openMenu" onclick="openNav()" style="margin-bottom:2em; width:auto; background:transparent; color:#667;" >☰</button><br><br>
+   <p class="img titre" id="titreMatin" style="background:#667; color:#ECECEA;  font-weight:bold;">Chrono mensuel</p>
+   <!-- <img src="juinSemaine4.png" class="img" style=" margin-top:3.3em; "> -->
+   <div style="float:left; " id="tables">
+	   <table style="display:inline !important;">
+			<tr id="t1ligne1"><td>Juillet</td><td>S6(لاٴنعَام)</td><td>S7(لاٴعرَاف)</td></tr>
+			<tr><td id="t1ligne2"><script>recup1();</script></td><td><script>recup2();</script></td><td><script>recup3();</script></td></tr>
+			<tr><td id="t1ligne3"><script>recup4();</script></td><td><script>recup5();</script></td><td><script>recup6();</script></td></tr>
+			<tr><td id="t1ligne4"><script>recup7();</script></td><td><script>recup8();</script></td><td><script>recup9();</script></td></tr>
+			<tr><td id="t1ligne4"><script>recup10();</script></td><td><script>recup11();</script></td><td><script>recup12();</script></td></tr>
+			<tr><td id="t1ligne6"><script>recup13();</script></td><td><script>recup14();</script></td><td><script>recup15();</script></td></tr>
+			<tr><td id="t1ligne7"><script>recup16();</script></td><td><script>recup17();</script></td><td><script>recup18();</script></td></tr>
+			<tr id="t1ligne8"><td>        </td><td> 24 pgs</td><td>27 pgs</td></tr>
+	   </table>
+	   <table style="display:inline !important;">
+			<tr id="t2ligne1"><td>Juillet</td><td>S8(لاٴنفَال)</td><td>S9(لتّوبَة)</td><td>S10(یُونس)</td></tr>
+			<tr><td id="t2ligne2">Dim 27</td><td> 30 mn</td><td>30 mn</td><td>?? mn</td></tr>
+			<tr><td id="t2ligne3">Dim 04</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td id="t2ligne4">Dim 11</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td id="t2ligne5">Dim 18</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td id="t2ligne6">Dim 25</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td id="t2ligne7">Dim 01</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr id="t2ligne8"><td>      </td><td>11 pgs</td><td>22 pgs</td><td>15 pgs</td></tr>
+	   </table>
+   </div>
+   <!-- <div style="clear:both"></div> -->
+   <!--ALIGNEMENT VERTICAL : display:block; float:left; -->
+   <div style="color:gray;  font-size:.7em; position:absolute; bottom:.3em;">
+      <u>&#9888; Rappel( procedure ) </u>:<br><br>
+      &emsp; &bull; <i> Persistance: pas encore prise en charge</i><br>
+      &emsp; &bull; <i> &#9888; Faire une capture du resultat pour l'integrer dans la page "minuteur/guideLecture/chronoMensuel.html"</i>
+	</div>
+</div><!-- #main -->
+
+<script type="text/javascript" src="js/btn.js"></script>   
+</body>
+</html> 

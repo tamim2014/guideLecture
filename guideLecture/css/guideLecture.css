@@ -1,0 +1,231 @@
+
+	body { 
+	    font-family: "Lato", sans-serif; background:#bbb;
+		overflow-x: hidden !important;
+	}
+	.sidebar {
+		  position: fixed; top: 0; left: 0; left: 0; height: 100%; width: 0; z-index: 1; 
+		  padding-top: 100px; overflow-x: hidden; background-color: #111; transition: 0.5s; 
+	}
+	.sidebar a , .dropdownBtn { display: block; padding: 8px 8px 8px 32px; font-size: 25px; text-decoration: none;  color: #818181; transition: 0.3s; }
+	.sidebar a:hover, .sidebar .dropdownBtn:hover  { color: #f1f1f1; }
+	.sidebar .closebtn { position: absolute; top: 15px; right: 25px; font-size: 36px; margin-left: 50px; }
+
+	.openbtn { font-size: 20px; cursor: pointer;  background-color: #111; color: white;  padding: 10px 15px; border: none; text-align:left; margin-top:0;  width:100%;   }
+	.openbtn:hover { background-color: #444; }
+
+     /***********************  DRPDOWN   **********************************/	
+    
+	.dropdownBtn {  border: none; outline: none; background: none; text-align: left; width: 100%;  /* width: 100%; => icon btn à droite */  }
+	   	
+	/* Add an active class to the active dropdown button */
+    .active { background-color: green; color: white; }
+	
+	
+    /* Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+	.dropdownContainer { display: none; background-color: #444 ; padding-left: 8px; }
+   
+   /* Optional: Style the caret down icon */
+   .fa-caret-down { float: right; padding-right:.5em; padding-top:.19em; }
+   
+    #interfaceSaisie{ 
+         background:#443;  margin:auto 1.5em .7em 1.1em;  line-height:.9 !important;    	 
+         box-shadow:
+			0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset,
+			0px 2px 2px 0px rgba(255, 255, 255, 0.5);		 
+    }
+	#interfaceSaisie a{ font-size: 1.2em; padding-left:.7em;}
+  
+	#main { padding: 16px; transition: margin-left .5s;   }
+	
+	img , .img , .resume , .cadreArdoise , .divBook , .paragrapheTransparent  { 
+		  float: left;  
+		  width:87%;/* m'a emmerdé car i fallait remplir ainsi remplir l'ecran .sinon le contenu remonte en display inline: la solution ? display:table-cell; ou bien un margin-right: largeurTotal - largeurElement; */
+		  height: auto ;
+		  padding:1.2em;  
+		  margin:0 auto 2em  0; /* margin:1.5% 6.5%;  */
+		  background: #555;
+		  box-shadow:
+			0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset,
+			0px 2px 2px 0px rgba(255, 255, 255, 0.5);
+		  border:1px solid #8c8b8b;
+		  border-radius: 4px; 	  
+	}
+	.divBook {
+		background:transparent;  border:none; box-shadow:none;
+	}
+
+    .paragrapheTransparent{
+         background-color:#bbb; width:92%;  display:block; float:left; box-shadow:none; background:transparent;
+	}
+	.paragrapheBlancSurCadreArdoise{
+		width:auto; 
+		height:auto; 
+		margin:auto; 
+		padding:1.2em;    
+        background: #f7f7f9;
+        box-shadow:none;
+		
+		
+		font-family:serif; 
+		line-height:1.2; 
+	}
+	/**
+	 *
+     *	Un livre ouvert porte les resumés des lecture matinale et nocture( index.html)
+     *	 
+	 */
+	 
+	 /* Volet gauche */
+	.resume{
+		   width:33%; 
+           height:auto; 		
+	       margin:2% 0 2% 4.4%; 
+		   padding:auto;  
+	       background:#999;/* background: #f7f7f9; */
+		   line-height:1.5; 
+		   transform: skewY(20deg);
+		   border-radius: 4px 0 0 4px; 
+		   
+		   border-bottom:none !important;
+		   	box-shadow:
+			0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset,
+			0px 2px 2px 0px rgba(255, 255, 255, .255);
+		   
+		   
+	
+	}
+    /* Volet droit*/
+	.resume ~ .resume { 
+	    margin:2% auto 2% 0;
+        transform: skewY(-20deg);
+        border-radius: 0 4px 4px 0; 
+    /* border-left:.5rem solid #999;  Le dos du livre */
+	}
+	.resume:not(.resume ~ .resume){
+	/* border-right:.5rem solid #999;  Le dos du livre */
+	}
+	.dosDuLivre{
+		width:0 !important; margin-top:3.5em !important; line-height:0; border-radius: 0 !important;   transform: none !important; padding:.4em !important ;
+	}
+	@media screen and (max-width: 680px) {
+		code, .resume { font-size:.7em !important;}
+		.resume {width:25% ;}
+		.dosDuLivre{ margin-top:2.67em !important; }
+	}
+	/* Liens de couverture( book resume)*/
+	 .bookLink{
+		text-decoration: none; 
+		color:inherit; 
+	 }
+	
+	.paragrapheBlanc{
+		float: left; 
+		width:87%;
+		margin:0 12% 4%  0; /* margin-right:12% !important; */
+		height: auto ;
+		padding:1.2em; 
+		
+		background: #f7f7f9; 
+		line-height:1.2;  
+		box-shadow:none;
+		border:1px solid #8c8b8b;
+		border-radius: 4px; 		
+		font-family:serif;
+	}
+	
+
+
+	
+	ul { 
+		 margin-left:0 !important; width:86%; /* margin-left:1em; width:77.5%; */
+		 border-radius:4px ;
+		 background:#998; 
+		 line-height:2;
+		 font-size:1.2em;
+	}
+	
+	ul li{ padding-left:.5em; }
+	ul li:nth-child(even) { background-color: #dddddd; }
+    ul li:nth-child(odd) { background-color: #ccc; }        
+	
+	.commentList{ color:gray; font-size:.61em;font-style:italic;}
+    .thawab { color:gray; font-size:.61em; font-style:italic; font-family:serif; }
+	
+	/* Scroll To Top Button */
+	#myBtn {
+		   display: none;  position: fixed; bottom: 20px; right: 7px; font-size:.77em; padding: .7em;
+		   border: none;  outline: none; background-color: #007; color: white; cursor: pointer; border-radius: 4px; z-index: 1;
+	}
+	#myBtn:hover { background-color: #555; }
+	
+	.tempsRequis {color:gray; font-size:.71em; font-family: Calibri Light; font-style:italic; font-family:serif;}
+		
+    .max { color:#4d94ff; font-style:italic; padding-right:.19em; font-size:.9em;}
+	
+	
+	.checkJuz, .checkS2  {color:#991; border-color: gray;} 
+    .checkS2  {color:#999 ;}
+    /* Pour les 2 juz cachés(j18 et j19): Tasks facultatif; donc cachés pour limiter la surcharge de la table, afin de  gagner en visibilité. */	
+	.j18j19 { background:#8c8b81; color:#8c8b81; } 
+	.j18j19:hover { color:#991; border-color: gray; background:inherit;}
+	
+	/* Rappel du dimanche: pour charger les données(chronoHebdo.html) */
+	#girofar{ 
+		 height:3em; width:2em; 
+         margin: 1% auto 0 35% !important;		 
+		 float:left;      	 
+	}
+	
+	/** On smaller screens, 
+	 *  where height is less than 450px, 
+	 *  change the style of the sidenav (less padding and a smaller font size)
+	 */
+	@media screen and (max-height: 450px) {
+
+	  .sidebar {padding-top: 15px;  width:100%;  }
+	  .sidebar a {font-size: 18px;}
+
+	}
+	@media screen and (max-width: 680px) {
+	  #mySidebar {  z-index:2; width:100% !important;  opacity: 0.93; }
+	  #main{ z-index:1; width:100% ; margin-left:0 !important;  }
+	  ul { font-size: .7em;}
+	  p.titre {width:87% !important; }
+	  
+    }
+
+	
+	/* Lien vers le CORAN */
+	.toTheCORAN{ text-decoration:none; color:inherit;}
+	
+	/* verif de ce qui est lu ou pas (index.html, avantDodo.html */
+	.valider{font-family:system ui; padding:1em ; font-style:italic; }
+    .valider strong { font-style: normal;}
+	
+	/**
+     *	Pourquoi display:table-cell; ? alignement vertical 
+	 *  c'est con ! j'aurais du faire un simple tag <h3> ou <h5>
+	 */
+   .ulTitre{ font-family:system-ui;   line-height:1; display:table-cell; background:transparent !important;}
+   .liTitre{background:transparent !important; padding:1em 1em 1em .1em; font-size:.9em; font-family:system ui; font-style:italic;}
+   .deuxSourateMatin , .unSourateSoir {padding-left:1.5em !important;}
+   .annotation{ color:#33a198; font-family:serif; font-size:.7em; font-weight:bold; text-decoration:none;}
+ 
+    @media screen and (max-width: 450px) {
+	   .dropdownBtn { padding: 8px 32px 8px 32px !important; }
+	   #mySidebar, .sidebar { opacity: 0.85 !important; }
+	   .sidebar .closebtn { top: .41em !important; right: .61em !important; margin-left: auto !important; font-size:3em !important;}
+	   #myNav{ display:none;}
+	   #main, .tables, .cadreArdoise {overflow-x: hidden !important;}
+	   /* weekend.html */
+	   #conteneurTable { width:92%; padding:0 ; margin:auto !important;}
+	   #checkTable { margin:0 !important; width:100% !important;}
+	   #checkTable tr { font-size:.97em;} 
+        /* chronoMensuel.html : sans le display block le margin-top ne s'applique pas */	   
+	   .table2 { display:block !important; margin-top:1.75em !important; }
+	   /* Rappel du dimache: chronoHebdo.html */
+	   #girofar { margin: 1% auto 0 15% !important;	}
+	   #messageGirofar { padding: 2.5em 1.5em 1.5em 1.5em !important;}
+	   .giro { padding:0 !important;}
+	}

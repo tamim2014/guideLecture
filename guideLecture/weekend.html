@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Week end</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="icone.ico"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/guideLecture.css">
+<style>
+  
+  #checkTable tr td { padding-left:.5em ; }
+
+  .titreTable { color:#999; border-color: gray;  font-family:serif; text-align:center; padding-left:0; }
+  th { background:#555;}
+  @media screen and (max-width: 680px) {
+    #checkTable{ font-size:.75em;}
+  }
+  @media screen and (max-width: 400px) {
+    #checkTable{ font-size:.65em;}
+  }
+</style>
+</head>
+<body onload="openNav(); ">
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="index.html" class="openbtn" style="text-decoration:none;"><i class="fa fa-home" style="font-size:24px;  "></i></a> 
+  
+  <a href="index.html#titreMatin">Matin</a>   
+  <a href="index.html#soir">Soir</a>
+  <a href="avantDodo.html#soir">Hawamim</a>
+  <a href="avantDodo.html">Nuit: Avant dodo</a>
+  <a href="priere.html">Prières</a>
+  <a href="weekend.html">week end</a>
+  <button class="dropdownBtn">Relevés Chrono  <i class="fa fa-caret-down"></i>  </button> 
+  <div class="dropdownContainer">
+    <a href="chronoHebdo.html">Hebdo</a>
+    <a href="chronoMensuel.html">Mensuels</a>
+	<div id="interfaceSaisie" >
+      <a href="saisieMensuelSamedi.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Samedi(tab mensuel)</small></a>
+      <a href="saisieMensuelDimanche.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Dimanche(tab mensuel)</small></a>
+    </div>
+	<a href="#"></a>
+  </div> 
+  
+</div>
+
+<div id="main">
+   <button class="openbtn" id="openMenu" onclick="openNav()" style="margin-bottom:2em; width:auto; background:transparent; color:#667;" >☰</button><br><br>
+   <!-- <p class="img" id="titreMatin" style="background: #667; width:92%;">1. Lecture du matin</p> -->  
+   <p class="img titre" id="titreMatin" style="background:#667; color:#ECECEA;  font-weight:bold;">Vendredi</p>
+        <br><br>
+		<div style="margin-bottom:2em;">	
+		<img src="img/vendredi.png" class="img" style=" margin-bottom:0; padding:0; width:92%;">
+	    </div>
+		
+   <p class="img titre" id="soir" style="background:#667 ; color:#ECECEA;  margin-top:3em !important; margin-bottom:0; margin-right:12%; font-weight:bold; " >Samedi</p>  
+    <span style="color:transparent; font-size:1em; line-height:0 !important;"> coupe la remontée de la table</span>
+	<div style="margin-bottom:2em;">	
+		<img src="img/samedi.png" class="img" style=" margin-bottom:0; padding:0; width:92%;">
+	</div>
+	
+  <p class="img titre" id="soir" style="background:#667 ; color:#ECECEA;  margin-top:3em !important; margin-bottom:0; margin-right:12%; font-weight:bold; " >Dimanche</p>  
+    <span style="color:transparent; font-size:1em; line-height:0 !important;"> coupe la remontée de la table</span>
+	<div style="margin-bottom:2em;">	
+		<img src="img/dimanche.png" class="img" style=" margin-bottom:0; padding:0; width:92%;">
+	</div>
+	
+  <!-- CHECK LIST -->
+  <span style="color:transparent; font-size:1em; line-height:0 !important;"> coupe la remontée de la table et fixe le check list en bas de l'ecran</span>
+  
+  <!-- <div class="img titre" id="soir" style="background:#667 ; color:#ECECEA;  margin-top:3em !important; margin-bottom:0; margin-right:12%; font-weight:bold; " > -->
+  <div class="img titre" id="conteneurTable" style="background:#667 ; color:#ECECEA;  margin-top:3em !important; margin-bottom:0; margin-right:12%; font-weight:bold; " >
+    
+		<table id="checkTable" border="1" style="width:100%; font-family:serif; color:gray; ">
+		  <tr>
+			 <th>Jeudi 11</th><th>Vendredi 12</th><th>Samedi 13</th><th>Dimanche 14</th>
+		  </tr>	
+
+		 <tr>
+			 <td id="s2" class="checkS2">s02: &emsp; </td ><td id="s3">s03: &emsp;</td><td id="s4bis">s04: &emsp;</td><td id="s200" class="checkS2">s02: &emsp; </td>
+		  </tr>	  
+		  
+		  <tr>
+			 <td id="s5">s05: &emsp; </td><td id="s4">s04: &emsp;</td><td id="j19" class="j18j19" style="color:#8c8b81;">j19: &emsp; </td><td id="s8" class="j18j19" style="color:#8c8b81;">s08: &emsp; </td>
+		  </tr>
+		  <tr>
+			 <td id="s38" class="j18j19" style="color:#8c8b81;">s38: &emsp; </td><td id="j18" class="j18j19" >j18: &emsp;</td><td id="s6" class="checkJuz">s06: &emsp;</td><td id="s9">s09: &emsp;</td>
+		  </tr>
+		  <tr>
+			 <td id="j13" class="checkJuz" >j13: &emsp; </td><td id="s11">s11: &emsp;</td><td id="s7" class="checkJuz">s07: &emsp;</td><td id="s10">s10: &emsp;</td>
+		  </tr>
+		  <tr>
+			 <td id="j14" class="checkJuz" >j14: &emsp; </td><td id="s18">s18: &emsp;</td><td rowspan="3" colspan="2" style="text-align:center;  ">Semaine 43</td>
+		  </tr>
+		  <tr>
+			 <td rowspan="2" style="color:transparent;">jeudi</td><td  id="j23" class="checkJuz">j23: &emsp;</td>
+		  </tr>
+		  <!-- cocher manuellement s44(&#9745;) -->
+		  <tr>
+			 <td id="j25" class="checkJuz">j25: &emsp; </td><td class="titreTable" >Check list</td>
+		  </tr>
+		</table>
+	
+  </div>  
+    <span style="color:transparent; font-size:1em; line-height:0 !important;"> coupe la remontée de la table</span>
+	<div style="margin-bottom:2em;">	
+		<!-- <img src="img/dimanche.png" class="img" style=" margin-bottom:0; padding:0; width:92%;"> -->
+    </div>
+    
+
+</div><!-- #main -->
+<script type="text/javascript" src="js/btn.js"></script>  
+<script type="text/javascript" src="js/fullscreenPicture.js"></script> 
+<script type="text/javascript" src="js/checkListWeekend.js"></script> 
+ 
+</body>
+</html> 

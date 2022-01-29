@@ -1,0 +1,12 @@
+Probleme non resolu: 
+Arrêt du compteur ( non pas sur une condition mais sur un evenement)
+-----------------------------------
+Si on veut mettre la valeur du prompt dans la pafe HTML:
+
+https://openclassrooms.com/forum/sujet/afficher-le-resultat-de-la-commande-prompt-dans-du-html-23471
+OU ICI
+https://forum.alsacreations.com/topic-5-86972-1-Recuperer-var-prompt-et-linjecter-dans-page-Html.html
+
+Si on veut mettre le prompt  dans la page HTML:
+
+https://openclassrooms.com/forum/sujet/prompt-equivalent-sur-une-page-html-25547

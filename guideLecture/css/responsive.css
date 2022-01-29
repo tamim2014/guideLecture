@@ -1,0 +1,29 @@
+	@media screen and (max-width: 450px) {
+		 
+		/* ###########  index.html ######## */
+		
+	   .dosDuLivre{ margin-top:2.3em !important;}
+	   .resume{line-height:1; font-size:.75em;}
+	   
+	   
+	   .cadreArdoise  { 
+			padding:0;
+			max-height:10em;			
+			width:97% !important; 
+			border-radius:8px;
+			overflow-y: scroll; /* scroll-behavior: smooth; */
+		}
+		
+	   .img{height:auto; }
+	   .paragrapheBlancSurCadreArdoise{
+		   border-radius: 4px; 
+	   }
+	   .commentList{display:none;}
+	   .valider, .ulTitre, .liTitre {font-size:.9em ;}
+	   .ulTitre, .liTitre {font-size:1em;}
+	   
+	   /* ###########  .... ######## */
+	   
+	   .deuxSourateMatin , .unSourateSoir {padding-left:1em; font-size:.7em; font-family:serif;}
+	  
+	}

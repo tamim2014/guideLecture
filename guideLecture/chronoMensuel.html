@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Chrono mensuel </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <script type="text/javascript" src="js/chronoMensuelSamedi.js"></script> -->
+<link rel="stylesheet" href="css/guideLecture.css">
+<style>
+
+    /* table specifique à la page ChronoMensuel.html et chronoHebdo.html */
+	
+    table{ width:auto;}
+
+	table tr:nth-child(2n) { background-color: #dddddd; }
+	  
+    table tr td {  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px; }
+    table tr:nth-child(2n+1) { background-color: #ccc; }
+    table tr td{padding:.5em .84em; }
+	
+	.t1ligne1, .t2ligne1, .t1ligne8, .t2ligne8 { background:transparent !important;  /* couleur des coins */ }
+    .t1ligne1 td, .t2ligne1 td {  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;	}	 
+	.t1ligne8 td, .t2ligne8 td { box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px; }
+
+
+	
+	.t1ligne8, .t2ligne8 { box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.5) inset, 0px 2px 2px 0px rgba(255, 255, 255, 0.5);  }
+
+	.t1ligne1 td, .t2ligne1 td { background: #333 !important; color:#ECECEA; border-radius:1000%;}
+	.t1ligne8 td, .t2ligne8 td { background: #332 !important; color:gray; border-radius:1000%;}
+	
+	
+    
+	.t1ligne2, .t1ligne3, .t1ligne4, .t1ligne5, .t1ligne6, .t1ligne7 { background:#998;}		
+    .t2ligne2, .t2ligne3, .t2ligne4, .t2ligne5, .t2ligne6, .t2ligne7 { background:#998;}		
+	
+	/* Blem: en mode responsive le contenu après les tables remonte */
+	#main #tables::after {
+	   content: "";
+	   display: block;
+	   clear: both;
+	}
+	/* blem non resolu: je le met en display: none en attendant de trouver l'origine du proplème */
+	@media screen and (max-width: 680px) {
+	 #remarque{display:none; }
+	}
+	@media screen and (max-width: 450px) {
+	    #main, .tables, .cadreArdoise {overflow-x: hidden !important;}
+	    table { 
+          
+			/* Horizontal Scrollable */
+            overflow: auto !important;
+            white-space: nowrap !important;			
+		}
+       
+	   table tr td{padding:auto;}
+	   table.table2 tr td{padding:.25em .45em;} 
+	   .cadreArdoise { width:84.5% !important; }
+	   .resume{ width:83.1% !important; max-height:8.1em !important; overflow: auto !important; margin:2% 4% !important; }
+    }
+</style>
+</head>
+<body onload="openNav();">
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="index.html" class="openbtn" style="text-decoration:none;"><i class="fa fa-home" style="font-size:24px;  "></i></a> 
+  
+  <a href="index.html">Matin</a>   
+  <a href="index.html#soir">Soir</a>
+  <a href="avantDodo.html#soir">Hawamim</a>
+  <a href="avantDodo.html">Nuit: Avant dodo</a>
+  <a href="priere.html">Prières</a>
+  <a href="weekend.html">week end</a>
+  <button class="dropdownBtn">Relevés Chrono  <i class="fa fa-caret-down"></i>  </button> 
+  <div class="dropdownContainer">
+    <a href="chronoHebdo.html">Hebdo</a>
+    <a href="chronoMensuel.html">Mensuels</a>
+	<div id="interfaceSaisie" >
+      <a href="saisieMensuelSamedi.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Samedi(tab mensuel)</small></a>
+      <a href="saisieMensuelDimanche.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Dimanche(tab mensuel)</small></a>
+    </div>
+	<a href="#"></a>
+  </div>   
+</div>
+
+<div id="main">
+   <button class="openbtn" id="openMenu" onclick="openNav()" style="margin-bottom:2em; width:auto; background:transparent; color:#667;" >☰</button><br><br>
+   <p class="img titre" id="titreMatin" style="background:#667; color:#ECECEA;  font-weight:bold;">Mensuel des weekend</p>
+   <!-- <img src="juinSemaine4.png" class="img" style=" margin-top:3.3em; "> -->
+   <div style="float:left; " id="tables" >
+       <!-- TEMPLATE Mensuels :
+	   <table style="display:inline !important;">
+			<tr class="t1ligne1"><td>Juillet</td><td>S6(لاٴنعَام)</td><td>S7(لاٴعرَاف)</td></tr>
+			<tr><td class="t1ligne2">Samedi 26</td><td> 30 mn</td><td>30 mn</td></tr>
+			<tr><td class="t1ligne3">Samedi 03</td><td> 27 mn</td><td>30 mn</td></tr>
+			<tr><td class="t1ligne4">Samedi 10</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr><td class="t1ligne5">Samedi 17</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr><td class="t1ligne6">Samedi 24</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr><td class="t1ligne7">Samedi 31</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr class="t1ligne8"><td>        </td><td> 23 pgs</td><td>26 pgs</td></tr>
+	   </table>
+	   <table style="display:inline !important;">
+			<tr class="t2ligne1"><td>Juillet</td><td>S8(لاٴنفَال)</td><td>S9(لتّوبَة)</td><td>S10(یُونس)</td></tr>
+			<tr><td class="t2ligne2">Dim 27</td><td> 12 mn</td><td>25 mn</td><td>?? mn</td></tr>
+			<tr><td class="t2ligne3">Dim 04</td><td> 12 mn</td><td>25 mn</td><td>17 mn</td></tr>
+			<tr><td class="t2ligne4">Dim 11</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td class="t2ligne5">Dim 18</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td class="t2ligne6">Dim 25</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td class="t2ligne7">Dim 01</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr class="t2ligne8"><td>      </td><td>10 pgs</td><td>21 pgs</td><td>14 pgs</td></tr>
+	   </table>
+	   -->
+	   	<table style="display:inline !important;  border-spacing:.81px; border-collapse:separate;">
+			<tr class="t1ligne1"><td>Juillet</td><td>S6(لاٴنعَام)</td><td>S7(لاٴعرَاف)</td></tr>
+			<tr style="background:#332;"><td></td><td></td><td></td></tr>
+			<tr><td class="t1ligne2">Samedi 26</td><td> 30 mn</td><td>30 mn</td></tr>
+			<tr><td class="t1ligne3">Samedi 03</td><td> 27 mn</td><td>30 mn</td></tr>
+			<tr><td class="t1ligne4">Samedi 10</td><td> 25 mn</td><td>26 mn</td></tr>
+			<tr><td class="t1ligne5">Samedi 17</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr><td class="t1ligne6">Samedi 24</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr><td class="t1ligne7">Samedi 31</td><td> .. mn</td><td>.. mn</td></tr>
+			<tr style="background:#332;"><td></td><td></td><td></td></tr>
+			<tr class="t1ligne8"><td><small class="tempsRequis">Time:<i style="color:#25fde9"> 33mn</i></small></td><td class="tempsRequis">23p(<i class="max">15mn</i>)</td><td class="tempsRequis">26p(<i class="max">17mn</i>)</td></tr>
+	   </table>
+	   <table class="table2" style="display:inline ; border-spacing:.81px; border-collapse:separate;">
+			<tr class="t2ligne1"><td>Juillet</td><td>S8(لاٴنفَال)</td><td>S9(لتّوبَة)</td><td>S10(یُونس)</td></tr>
+			<tr style="background:#332;"><td></td><td></td><td></td><td></td></tr>
+			<tr><td class="t2ligne2">Dim 27</td><td> 12 mn</td><td>25 mn</td><td>?? mn</td></tr>
+			<tr><td class="t2ligne3">Dim 04</td><td> 12 mn</td><td>25 mn</td><td>17 mn</td></tr>
+			<tr><td class="t2ligne4">Dim 11</td><td> 11 mn</td><td>23 mn</td><td>15 mn</td></tr>
+			<tr><td class="t2ligne5">Dim 18</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td class="t2ligne6">Dim 25</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr><td class="t2ligne7">Dim 01</td><td> .. mn</td><td>.. mn</td><td>.. mn</td></tr>
+			<tr style="background:#332;"><td></td><td></td><td></td><td></td></tr>
+			<tr class="t2ligne8" ><td ><small class="tempsRequis">Time: <i style="color:#25fde9">30mn</i></small></td><td class="tempsRequis">10p(<i class="max">6mn</i>)</td><td class="tempsRequis">21p(<i class="max">14mn</i>)</td><td class="tempsRequis">14p(<i class="max">9mn</i>)</td></tr>
+	   </table>	   
+   </div>
+   
+   	<div class="cadreArdoise" style="margin-top:2em;" >		   
+			<span class="resume" style="height:15em; transform: none !important; background: #f7f7f9; margin-left:9.5%; margin-right:.5em; ">
+			<s>   
+				  <b style="font-family:serif; font-size:.9em; color:#115; "><u><strong>Exhaustive nocturne</strong><i>(hawamim)</i></u></b><br>
+				  <code style="background:#ddd; line-height:1; padding:.3em 0;">
+                         <br>
+						 &nbsp;&bull; <a href="../../CORAN/s40.html#s40page467" target="_blank" class="bookLink">s40( غَافر  ):<i>?mn</i>&nbsp;</a><br>
+				         &nbsp;&bull; s41( فُصّلَت ):<i>?mn</i>&nbsp;<br>
+				         &nbsp;&bull; s42(الشّوریٰ):<i>?mn</i>&nbsp;<br>
+				         &nbsp;&bull; s43(الزّخرُف):<i>?mn</i>&nbsp;<br>
+				         &nbsp;&bull; s44(الدّخان):<i>?mn</i>&nbsp;<br>
+				         &nbsp;&bull; s45(الجَاثیَة):<i>?mn</i>&nbsp;<br>
+				         &nbsp;&bull; s46( الاٴحقاف):<i>?mn</i>&nbsp;<br><br>
+				  </code>
+			</s>	
+			</span>			
+			<span class="resume" style="height:15em; transform: none !important; background: #f7f7f9; margin-left:.5em;">
+			<s>
+				  <b style="font-family:serif; color:transparent;"><u> <strong>Exaustif du soir</strong><i>( si possible )</i></u></b><br>
+				  <br><br>
+				  <code style="background:#ddd; line-height:3; line-height:1; padding:.3em 0;">
+					    &nbsp; Soient 2 juz &emsp;&emsp;<br>
+						&emsp;&emsp;  <b style="color:green">40</b>  pgs &emsp;&emsp; <br>
+				  </code>
+				  <br>
+				  &rArr; <strong style="color:green; font-family:serif;">30mn INCHA ALLÃH</strong> <br>
+			</s>
+			</span>			
+	</div>
+   <!-- <div style="clear:both"></div> 
+   <div id="remarque" style="position:absolute ; bottom:.3em !important;  color:gray;  font-size:.7em; float:lef;  ">
+      <u>Rappel( tasks ) </u>:<br><br>
+      &emsp; &bull; <i> Ajouter des prompt pour une saisie dynamique"</i><br>
+      &emsp; &bull; <i> Chaque table doit avoir sa propre appli( donc 2 processus séparés) pour pas alourdir la saisie</i>
+	</div>
+	-->
+</div><!-- #main -->
+
+
+<script type="text/javascript" src="js/btn.js"></script>
+</body>
+</html> 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Avant dodo( 4 routines)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="icone.ico"  />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/guideLecture.css">
+<link rel="stylesheet" href="css/responsive.css">
+<style>
+  p.img strong {
+    
+	box-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  }
+  .cadreArdoise{padding:0; width:92%; border-radius: 4px; border-bottom:none; }
+  .paragrapheBlancSurCadreArdoise{ border-radius: 4px;}
+  a#antCon:visited { color: inherit; } /* Pour que la couleur ne change pas après la visite du lien */
+  
+
+  @media screen and (max-width: 450px) {
+      .cadreArdoise  { height:7em; !important; border:none;  }
+		p.img:not(#titreMatin, #soir){ 			
+            width:87% !important; 
+			height:3em; !important;
+			padding:0 auto !important;
+			overflow-y: scroll; /* scroll-behavior: smooth; */
+			box-shadow:
+			0px 0px 0px 0px rgba(0, 0, 0, 0.5) inset,
+			0px 2px 0px 0px rgba(255, 255, 255, 0.5) !important;
+		}
+		strong {font-size:.7em !important;}
+	   .img{ height:auto; width:100% !important; }
+       .thawab{display:none;}
+	   .liTitre{ font-size:1.2em !important; }
+  }
+</style>
+
+</head>
+<body onload="openNav(); ">
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="index.html" class="openbtn" style="text-decoration:none;"><i class="fa fa-home" style="font-size:24px;  "></i></a> 
+  
+  <a href="index.html#titreMatin">Matin</a>   
+  <a href="index.html#soir">Soir</a>
+  <a href="avantDodo.html#soir">Hawamim</a>
+  <a href="avantDodo.html">Nuit: Avant dodo</a>
+  <a href="priere.html">Prières</a>
+  <a href="weekend.html">week end</a>
+  <button class="dropdownBtn">Relevés Chrono  <i class="fa fa-caret-down"></i>  </button> 
+  <div class="dropdownContainer">
+    <a href="chronoHebdo.html">Hebdo</a>
+    <a href="chronoMensuel.html">Mensuels</a>
+	<div id="interfaceSaisie" >
+      <a href="saisieMensuelSamedi.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Samedi(tab mensuel)</small></a>
+      <a href="saisieMensuelDimanche.html" target="_blank" >Saisie:<small style="font-size:.5em; font-family:Terminal;"> Dimanche(tab mensuel)</small></a>
+    </div>
+	<a href="#"></a>
+  </div> 
+  
+</div>
+
+<div id="main">
+   <button class="openbtn" id="openMenu" onclick="openNav()" style="margin-bottom:2em; width:auto; background:transparent; color:#667;" >☰</button><br><br>
+   <!-- <p class="img" id="titreMatin" style="background: #667; width:92%;">1. Lecture du matin</p> -->  
+   <p class="img titre" id="titreMatin" style="background:#667; color:#ECECEA;  font-weight:bold;">La nuit : avant dodo</p>
+        <br><br>
+		<ul type="square" style="margin-bottom:0;">
+		    <!-- <li style="border-radius:0 40px 0 0; "><a href="../../CORAN/s36.html#s36debut" target="_blank" class="toTheCORAN">s36(یسٓ)</a><small class="thawab"> &emsp; Contre la malfaisance de tout diable banni et contre toute maladie </small> </li> -->
+		    <li onclick="readNight()" style="border-radius:0 40px 0 0; ">s36(یسٓ)<small class="thawab"> &emsp;&emsp;  Contre la malfaisance de tout diable banni et contre toute maladie </small> </li>
+			<li style="color:#cc6600;"><a href="../../CORAN/s67.html" target="_blank" class="toTheCORAN">s67(المُلک)</a> <small class="thawab"> &nbsp; T'es sous la protection d'<b>Allãh</b> jusqu'au réveil, ainsi que le Jour de la Résurrection</small></li>
+			<li><a href="../../CORAN/s72.html" target="_blank" class="toTheCORAN">s72(الجنّ)</a> <small class="thawab"> &emsp; Libère l"opprimé, protège des housda, sihr, et des ruses des diables</small> </li>
+		    <li style="color:#cc6600;">s73(المُزمّل) <small class="thawab"> Qui lit , tard le soir, cette sourate: <u>la nuit</u> et <u>le jour</u> lui serviront de témoins le jour J. </small></li>
+		    <li style="border-radius:0 0 40px 0;"><small class="tempsRequis">Temps requis:<i style="color:#007"> ... mn</i></small></li>
+		    
+		</ul>
+        <!-- Verif si la lecture de la nuit est faite ou pas -->
+		<!-- <div class="valider" id="validateNight">&#9745; &nbsp; Cocher ici ( <i style="font-family:serif"> Si c'est fait !</i>)</div>		 -->
+        <div class="valider" id="validateNight"></div>		
+		
+		
+		
+		<!-- <img src="img/s67s56.png" class="img" style=" margin-bottom:0; padding:0; width:92%;"> -->
+		<div class="cadreArdoise" >
+			<p class="paragrapheBlancSurCadreArdoise"  >
+				  <strong style="font-size:1.2em; color:#cc6600;" > s67( سُوۡرَةُ المُلک ) : Salvatrice du supplice de la tombe.</strong><br><br>
+				  
+				  <small>&#9193;</small> Qui la lit avant de dormir est sous la protection d'<b>Allãh</b> jusqu'au réveille.<br>&nbsp;&nbsp; &nbsp;  Et il sera amené au Paradis le Jour de la résurrection.<br><br>
+				  <small>&#9193;</small> Le Prophète &#65018; la lisait chaque nuit.<br><br>
+				  <small>&#9193;</small> Le Prophète &#65018; a recommandé de la lire chaque matin aussi.
+			</p>
+		</div>
+		
+		<!-- Alignement vertical: display:table-cell;  -->
+		
+		<ul type="square" class="ulTitre" ><li class="liTitre"> Au moment de dormir( <i>afin d'être à l'abri de satan</i> ): s7.verset54</li></ul>
+		
+		<p class="img" style="background: #f7f7f9; line-height:1.5; margin-right:12% !important; text-align:center; box-shadow:none;">
+			  <br>
+			  <strong style="background:#ddd; color:#007; line-height:3; font-family:Amiri; padding:.2em .5em;" lang="ar" dir="rtl ">
+					
+					    إِنَّ رَبَّكُمُ ٱللَّهُ ٱلَّذِى خَلَقَ ٱلسَّمَـٰوَٲتِ وَٱلۡأَرۡضَ فِى سِتَّةِ أَيَّامٍ۬ ثُمَّ ٱسۡتَوَىٰ عَلَى ٱلۡعَرۡشِ يُغۡشِى ٱلَّيۡلَ ٱلنَّہَارَ يَطۡلُبُهُ ۥ حَثِيثً۬ا وَٱلشَّمۡسَ وَٱلۡقَمَرَ وَٱلنُّجُومَ مُسَخَّرَٲتِۭ بِأَمۡرِهِۦۤ‌ۗ أَلَا لَهُ ٱلۡخَلۡقُ وَٱلۡأَمۡرُ‌ۗ تَبَارَكَ ٱللَّهُ رَبُّ ٱلۡعَـٰلَمِينَ (﻿٥٤﻿) 					
+			  </strong>
+			  <br>
+	    </p>
+		
+		<ul type="square" class="ulTitre" ><li class="liTitre"> Quiconque appréhende un magicien ou un diable( <i>qu'il récite</i> ): s10.verset3</li></ul>
+		
+		<p class="img" style="background: #f7f7f9; line-height:1.5; margin-right:12% !important; text-align:center; box-shadow:none;">
+			  <br>
+			  <strong style="background:#ddd; color:#31968e; line-height:3; font-family:Amiri; padding:.2em .5em;" lang="ar" dir="rtl ">
+				    إِنَّ رَبَّكُمُ ٱللَّهُ ٱلَّذِى خَلَقَ ٱلسَّمَـٰوَٲتِ وَٱلۡأَرۡضَ فِى سِتَّةِ أَيَّامٍ۬ ثُمَّ ٱسۡتَوَىٰ عَلَى ٱلۡعَرۡشِ‌ۖ يُدَبِّرُ ٱلۡأَمۡرَ‌ۖ مَا مِن شَفِيعٍ إِلَّا مِنۢ بَعۡدِ إِذۡنِهِۦ‌ۚ ذَٲلِڪُمُ ٱللَّهُ رَبُّڪُمۡ فَٱعۡبُدُوهُ‌ۚ أَفَلَا تَذَكَّرُونَ (﻿٣﻿)
+			  </strong>
+			  <br>
+	    </p>
+		
+		<ul type="square" class="ulTitre" ><li class="liTitre"> Quiconque veut se rendre invisible aux yeux des ennemis</li></ul>
+		
+		<p class="img" style="background: #f7f7f9; line-height:1.5; margin-right:12% !important; text-align:center; box-shadow:none;">
+			  <br>
+			  <strong style="background:#ddd; color:#31968e; line-height:3; font-family:Amiri; padding:.2em .5em;" lang="ar" dir="rtl ">
+				    Suivre ce lien : <a id="antiCon" target="_blank" href="../../CORAN/Invocations/cahiergris.html#murAntiCon">Cahier gris </a>&#9997;
+			  </strong>
+			  <br>
+	    </p>
+		
+		
+   <p class="img titre" id="soir" style="background:#667 ; color:#ECECEA;  margin-top:10em !important; margin-bottom:0; margin-right:12%; font-weight:bold; " >Les Hawamim</p>  
+        <span style="color:transparent; font-size:1em; line-height:0 !important;"> coupe la remontée de la table</span>
+	<div style="margin-bottom:5em;">	
+		<img src="img/hawamim.png" class="img" style=" margin-bottom:0; padding:0; width:92%;">
+	</div>
+    
+
+</div><!-- #main -->
+<script type="text/javascript" src="js/btn.js"></script>  
+<script type="text/javascript" src="js/fullscreenPicture.js"></script> 
+<script type="text/javascript" src="js/checkDailyRead.js"></script> 
+
+<script>
+        // Remarque: Pour chrome i fo placer les liens dans l'ordre inverse
+ 	    function readNight(){
+		     window.open("../../CORAN/s73.html");
+		     window.open("../../CORAN/s72.html");
+		     window.open("../../CORAN/s67.html");
+		     window.open("../../CORAN/s36.html#s36debut");		
+		}
+</script> 
+</body>
+</html> 
